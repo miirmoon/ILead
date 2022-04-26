@@ -1,6 +1,6 @@
 package com.ssafy.ILead.api.CLOVA;
 
-import com.ssafy.ILead.util.S3Uploader;
+import com.ssafy.ILead.key.ClovaProperties;
 import com.ssafy.ILead.api.dto.Result;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,9 +19,8 @@ import java.net.URL;
 @RequiredArgsConstructor
 public class clovaApiController {
 
-    String clientId = "n9ld7s5dom";
-    String clientSecret = "ZjNf8AbNlAB9Mir0l8G0ZcNU7g8wk0OGqbg4IWeu";
-    private final S3Uploader s3Uploader;
+    String clientId = ClovaProperties.CLIENT_ID;
+    String clientSecret = ClovaProperties.CLIENT_SECRET;
 
     @PostMapping("clova/stt")
     public Result speechToText(@RequestBody MultipartFile recordFile){
