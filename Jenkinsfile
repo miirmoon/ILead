@@ -18,7 +18,7 @@ pipeline {
     }
     stage('React build') {
       steps {
-        sh 'npm run build --prefix FE/ibg'
+        sh 'npm run build --prefix FE/ilead'
       }
     }
     stage('Build nginx image') {
