@@ -13,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.UUID;
 
 @Slf4j
 @RestController
@@ -27,32 +26,10 @@ public class clovaApiController {
     @PostMapping("clova/stt")
     public Result speechToText(@RequestBody MultipartFile recordFile){
 
-        MultipartFile file = null;
         try{
-            file = recordFile;
-            log.debug("원래 파일 이름: "+ file.getOriginalFilename());
-
-            // 파일명
-            String originFile = file.getOriginalFilename();
-
-            // 확장자
-            String originFileExtension = originFile.substring(originFile.lastIndexOf("."));
-
-            // 저장 파일명
-            // UUID클래스 - 특수문자를 포함한 문자를 랜덤으로 생성함.
-            // "-"부분만 지워주고 마지막에 확장자 포함
-            String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originFileExtension;
-
-            // 확장자 체크
-            String fileType = getFileType(file);
-
-            // file type이 지원하지 않는 경우
-            if(fileType == null) {
-                return new Result(HttpStatus.FORBIDDEN.value());
-            }
 
             // clova
-            String imgFile = s3Uploader.upload(file, storedFileName);
+            String imgFile = "파일 위치";
             File voiceFile = new File(imgFile);
 
             String language = "Kor";        // 언어 코드 ( Kor, Jpn, Eng, Chn )
@@ -98,7 +75,7 @@ public class clovaApiController {
             }
 
 
-        } catch (Exception e) {// 저장 위치 찾지 못하는 경우 92line에서 오류 발생, 417에러 return함.
+        } catch (Exception e) {
             e.printStackTrace();
             return new Result(HttpStatus.EXPECTATION_FAILED.value(), e);
         }
@@ -107,22 +84,4 @@ public class clovaApiController {
         return new Result(HttpStatus.OK.value());
     }
 
-    public void makeDir(String filePath) {
-        if (!new File(filePath).exists()) {
-            try {
-                new File(filePath).mkdir();
-            } catch (Exception e) {
-                e.getStackTrace();
-            }
-        }
-    }
-
-    public String getFileType(MultipartFile files){
-        String fileName = files.getOriginalFilename();
-        String extension = fileName.substring(fileName.lastIndexOf(".") + 1);
-
-        extension = extension.toLowerCase();
-
-        return "음성";
-    }
 }
