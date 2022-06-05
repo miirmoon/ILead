@@ -1,3 +1,9 @@
+# Unity Build 파일 다운로드
+
+- 용량이 큰 unity파일은 구글 드라이브를 통해 별도로 다운로드 받을 수 있습니다.
+  - [Build.data.unityweb 파일 다운받기](https://drive.google.com/file/d/11LhN2iKsedIe7g5eBsrD9NRlR3oNZme0/view?usp=sharing)
+- 다운로드 받은 파일을 `FE/ilead/public/Build` 안에 넣고 실행합니다.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
