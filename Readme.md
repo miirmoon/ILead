@@ -246,3 +246,5 @@
 ## 8. 수상 내역
 
     🏆 삼성 청년 SW 아카데미(SSAFY) 자율 프로젝트 최우수상 수상
+
+<img src="https://user-images.githubusercontent.com/81166378/174917148-3db84c6f-401b-4550-94bf-62fed153d948.jpg" width="50%">
